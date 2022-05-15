@@ -1,10 +1,7 @@
 <template>
   <section class="section">
     <h2 class="title is-3 has-text-grey">
-      {{ title }}  <b-icon
-        :icon="icon"
-        size="is-large"
-      />
+      {{ title }} <BIcon v-if="icon.length" :icon="icon" size="is-large" />
     </h2>
     <h3 v-if="description.length" class="subtitle is-6 has-text-grey">
       {{ description }}

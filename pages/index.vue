@@ -1,35 +1,37 @@
 <template>
-  <PageContent title="Listagem de Usuários" icon="group-account">
-    <BButton class="block is-primary" icon-right="plus">
-      Usuário
-    </BButton>
-    <BTable
-      :data="data"
-      :focusable="true"
-    >
-      <BTableColumn v-slot="props" field="name" label="Nome" searchable>
-        {{ props.row.name }}
-      </BTableColumn>
-      <BTableColumn v-slot="props" field="cpf" label="CPF" searchable>
-        {{ props.row.cpf }}
-      </BTableColumn>
-      <BTableColumn v-slot="props" field="mail" label="E-mail" searchable>
-        {{ props.row.mail }}
-      </BTableColumn>
-      <BTableColumn v-slot="props" field="phone" label="Telefone" searchable>
-        {{ props.row.phone }}
-      </BTableColumn>
-      <BTableColumn v-slot="props" field="actions" label="Ações">
-        <div class="columns is-mobile">
-          <a href="#editar" class="column is-half" @click.prevent="alert(props.row.cpf)">
-            <BIcon icon="pencil-outline" />
-          </a>
-          <a href="#excluir" class="column is-half" @click.prevent="alert(props.row.cpf)">
-            <BIcon icon="delete-outline" />
-          </a>
-        </div>
-      </BTableColumn>
-    </BTable>
+  <PageContent title="Listagem de Usuários" :description="description" icon="account-group">
+    <div class="container">
+      <BButton tag="router-link" to="/novo-usuario" class="block is-primary" icon-right="plus">
+        Usuário
+      </BButton>
+      <BTable
+        :data="data"
+        :focusable="true"
+      >
+        <BTableColumn v-slot="props" field="name" label="Nome" searchable>
+          {{ props.row.name }}
+        </BTableColumn>
+        <BTableColumn v-slot="props" field="cpf" label="CPF" searchable>
+          {{ props.row.cpf }}
+        </BTableColumn>
+        <BTableColumn v-slot="props" field="mail" label="E-mail" searchable>
+          {{ props.row.mail }}
+        </BTableColumn>
+        <BTableColumn v-slot="props" field="phone" label="Telefone" searchable>
+          {{ props.row.phone }}
+        </BTableColumn>
+        <BTableColumn v-slot="props" field="actions" label="Ações">
+          <div class="columns is-mobile">
+            <a href="#editar" class="column is-half" @click.prevent="alert(props.row.cpf)">
+              <BIcon icon="pencil-outline" />
+            </a>
+            <a href="#excluir" class="column is-half" @click.prevent="alert(props.row.cpf)">
+              <BIcon icon="delete-outline" />
+            </a>
+          </div>
+        </BTableColumn>
+      </BTable>
+    </div>
   </PageContent>
 </template>
 
@@ -68,6 +70,11 @@ export default {
           searchable: true
         }
       ]
+    }
+  },
+  computed: {
+    description () {
+      return `Total de ${this.data.length} usuários`
     }
   },
   methods: {
