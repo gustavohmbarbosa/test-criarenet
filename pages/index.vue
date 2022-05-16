@@ -19,9 +19,9 @@
         </BTableColumn>
         <BTableColumn v-slot="props" field="actions" label="Ações">
           <div class="columns is-mobile">
-            <a href="#editar" class="column is-half" @click.prevent="editUser(props.row.cpf)">
+            <NuxtLink :to="{ name: 'usuarios-cpf', params: { cpf: props.row.cpf }}" class="column is-half">
               <BIcon icon="pencil-outline" />
-            </a>
+            </NuxtLink>
             <a href="#excluir" class="column is-half" @click.prevent="confirmDeleteUser(props.row)">
               <BIcon icon="delete-outline" />
             </a>
