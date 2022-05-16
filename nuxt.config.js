@@ -35,7 +35,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/buefy
-    'nuxt-buefy'
+    'nuxt-buefy',
+    ['cookie-universal-nuxt', { alias: 'storage' }]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
