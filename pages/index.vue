@@ -22,7 +22,7 @@
             <a href="#editar" class="column is-half" @click.prevent="editUser(props.row.cpf)">
               <BIcon icon="pencil-outline" />
             </a>
-            <a href="#excluir" class="column is-half" @click.prevent="editUser(props.row.cpf)">
+            <a href="#excluir" class="column is-half" @click.prevent="confirmDeleteUser(props.row)">
               <BIcon icon="delete-outline" />
             </a>
           </div>
@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import { DELETE_USER } from '@/store/Users/actions-types'
 
 export default {
   name: 'IndexPage',
@@ -72,6 +73,23 @@ export default {
   methods: {
     editUser (text) {
       alert(text)
+    },
+    ...mapActions('Users', { DELETE_USER }),
+    confirmDeleteUser ({ name, cpf }) {
+      this.$buefy.snackbar.open({
+        indefinite: true,
+        type: 'is-danger',
+        position: 'is-top',
+        message: `Excluir <b>${name}</b> do sistema?`,
+        cancelText: 'Cancelar',
+        actionText: 'Excluir',
+        onAction: () => {
+          this[DELETE_USER](cpf)
+          this.$buefy.toast.open({
+            message: `${name} foi excluído(a) do sistema.`
+          })
+        }
+      })
     }
   }
 }
