@@ -4,7 +4,7 @@
       <BButton tag="router-link" :to="{ name: 'usuarios-novo'}" class="block is-primary" icon-right="plus">
         Usuário
       </BButton>
-      <BTable :data="data" :focusable="true">
+      <BTable :data="users" :focusable="true">
         <BTableColumn v-slot="props" field="name" label="Nome" searchable>
           {{ props.row.name }}
         </BTableColumn>
@@ -19,10 +19,10 @@
         </BTableColumn>
         <BTableColumn v-slot="props" field="actions" label="Ações">
           <div class="columns is-mobile">
-            <a href="#editar" class="column is-half" @click.prevent="alert(props.row.cpf)">
+            <a href="#editar" class="column is-half" @click.prevent="editUser(props.row.cpf)">
               <BIcon icon="pencil-outline" />
             </a>
-            <a href="#excluir" class="column is-half" @click.prevent="alert(props.row.cpf)">
+            <a href="#excluir" class="column is-half" @click.prevent="editUser(props.row.cpf)">
               <BIcon icon="delete-outline" />
             </a>
           </div>
@@ -33,18 +33,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   name: 'IndexPage',
   data () {
     return {
-      data: [
-        { name: 'Jesse', mail: 'Jesse@test.com.br', phone: '11987654321', cpf: '11244545784' },
-        { name: 'John', mail: 'John@test.com.br', phone: '11987654321', cpf: '05578411244' },
-        { name: 'Tina', mail: 'Tina@test.com.br', phone: '11987654321', cpf: '54112445784' },
-        { name: 'Clarence', mail: 'Clarence@test.com.br', phone: '11987654321', cpf: '04112445784' },
-        { name: 'Anne', mail: 'Anne@test.com.br', phone: '11987654321', cpf: '78404112445' }
-      ],
       columns: [
         {
           field: 'name',
@@ -71,11 +65,12 @@ export default {
   },
   computed: {
     description () {
-      return `Total de ${this.data.length} usuários`
-    }
+      return `Total de ${this.users.length} usuários`
+    },
+    ...mapState('Users', ['users'])
   },
   methods: {
-    alert (text) {
+    editUser (text) {
       alert(text)
     }
   }
