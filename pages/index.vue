@@ -1,13 +1,10 @@
 <template>
   <PageContent title="Listagem de Usuários" :description="description" icon="account-group">
     <div class="container">
-      <BButton tag="router-link" to="/novo-usuario" class="block is-primary" icon-right="plus">
+      <BButton tag="router-link" :to="{ name: 'usuarios-novo'}" class="block is-primary" icon-right="plus">
         Usuário
       </BButton>
-      <BTable
-        :data="data"
-        :focusable="true"
-      >
+      <BTable :data="data" :focusable="true">
         <BTableColumn v-slot="props" field="name" label="Nome" searchable>
           {{ props.row.name }}
         </BTableColumn>

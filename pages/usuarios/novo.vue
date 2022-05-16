@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'InspirePage',
+  name: 'AddUser',
   data () {
     return {
       model: {}
