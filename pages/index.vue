@@ -79,7 +79,6 @@ export default {
       this.$buefy.snackbar.open({
         indefinite: true,
         type: 'is-danger',
-        position: 'is-top',
         message: `Excluir <b>${name}</b> do sistema?`,
         cancelText: 'Cancelar',
         actionText: 'Excluir',
