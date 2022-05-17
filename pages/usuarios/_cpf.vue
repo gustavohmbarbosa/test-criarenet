@@ -48,9 +48,13 @@ export default {
   computed: {
     ...mapGetters('Users', [GET_USER_BY_DOCUMENT]),
     user () {
-      const { ...data } = this[GET_USER_BY_DOCUMENT](this.$route.params.cpf)
+      const user = this[GET_USER_BY_DOCUMENT](this.$route.params.cpf)
 
-      return data
+      if (!user) {
+        return null
+      }
+
+      return { ...user }
     },
     title () {
       if (this.user) {
